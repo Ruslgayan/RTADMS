@@ -3,8 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true,
-  apiUrl: 'http://3.92.21.51:8080/rtadms-org'
+  production: false,
+  apiUrl: 'http://3.92.21.51:8080/rtadms-full'
 };
 
 /*
