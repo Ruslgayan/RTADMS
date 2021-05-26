@@ -1,0 +1,7 @@
+<h2 mat-dialog-title>Logged Out </h2>
+<mat-dialog-content>Hi {{userName}}. Are you sure you want to Logout?</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button color="primary" mat-dialog-close >Keep me logged in</button>
+  <button mat-raised-button color="warn" (click)="confirm()" >Log Out</button>
+</mat-dialog-actions>
+

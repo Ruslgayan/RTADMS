@@ -1,0 +1,33 @@
+//toaster
+::ng-deep .snack-bar-success{
+  background-color: #008700 !important;
+  color: white !important;
+  font-weight: 500 !important;
+
+  button{
+    color: white !important;
+    font-weight: 500 !important;
+  }
+}
+
+::ng-deep .snack-bar-error{
+  background-color: darkred !important;
+  color: white !important;
+  font-weight: 500 !important;
+
+  button{
+    color: white !important;
+    font-weight: 500 !important;
+  }
+}
+
+::ng-deep .snack-bar-warning{
+  background-color: #c1c81d !important;
+  color: black !important;
+  font-weight: 500 !important;
+
+  button{
+    color: white !important;
+    font-weight: 500 !important;
+  }
+}

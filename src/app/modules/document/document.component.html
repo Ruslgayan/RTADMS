@@ -1,0 +1,329 @@
+<div>
+  <br>
+</div>
+
+<div>
+  <mat-card class="card">
+
+    <mat-card-title> Update Documents </mat-card-title>
+
+    <div>
+      <br>
+    </div>
+
+    <div>
+      <form [formGroup]="updateDocumentForm">
+
+        <table >
+<!--          <tr>-->
+<!--            <td class="label">-->
+<!--              <mat-label for="tin">TIN :</mat-label>-->
+<!--            </td>-->
+
+<!--            <td>-->
+<!--              <mat-form-field class="example-full-width">-->
+<!--                <input type="text" formControlName="tin" required matInput>-->
+<!--              </mat-form-field>-->
+<!--            </td>-->
+
+<!--          </tr>-->
+
+          <tr>
+            <td class="label">
+              <mat-label for="cname"> Company Name :</mat-label>
+            </td>
+
+            <td>
+              <mat-form-field appearance="fill">
+                <mat-label>Select...</mat-label>
+                <mat-select formControlName="companyName" required>
+                  <mat-option  *ngFor="let company of companies" [value]="company">{{company}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              <mat-label for="fyear" > Financial Year :</mat-label>
+            </td>
+
+            <td>
+              <mat-form-field appearance="fill">
+                <mat-label>Select...</mat-label>
+                <mat-select formControlName="financialYear" required>
+                  <mat-option *ngFor="let year of years" [value]="year">{{year}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              <mat-label for="rtype"> Report Type :</mat-label>
+            </td>
+
+            <td>
+              <mat-form-field appearance="fill">
+                <mat-label>Select...</mat-label>
+                <mat-select formControlName="reportType" required>
+                  <!--need to add values automatically -->
+                  <mat-option *ngFor="let report of reports" [value]="report">{{report}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              <button mat-raised-button color="accent" type="reset" value="Reset">
+                <mat-icon>refresh</mat-icon> Reset</button>
+            </td>
+
+            <td class="label2">
+              <button mat-raised-button color="primary" type="submit" value="Submit"
+                      *ngIf="updateDocument"
+              (click)="getFile()" [disabled]="!updateDocumentForm.valid">
+                <mat-icon>search</mat-icon> Find</button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+
+    <div>
+      <br>
+    </div>
+
+    <!-- Green Line-->
+    <mat-divider></mat-divider>
+
+    <div>
+      <br><br>
+    </div>
+
+    <div>
+      <!--Document Table-->
+      <!--Example-->
+
+      <table  *ngIf="documents && documents.length" class="table">
+        <thead class="thead-dark">
+        <tr>
+          <th >No.</th>
+          <th> Financial Year </th>
+          <th > Report Type </th>
+          <th> Document </th>
+          <th > Action </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let document of documents; index as i">
+          <td>{{i+1}}</td>
+          <td>{{document.financialYear}}</td>
+          <td>{{document.reportType}}</td>
+          <td>{{document.documentName}}</td>
+          <td>
+            <button mat-raised-button color="primary" type="submit" value="Submit"
+                    *ngIf="deleteFile"
+            (click)="deleteDocument(document.documentName)">
+              <mat-icon></mat-icon>Delete
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+      <!-- End Example-->
+      <!--End Document Table-->
+    </div>
+
+  </mat-card>
+</div>
+
+<div>
+  <br>
+</div>
+<!--Upload documents-->
+<div>
+  <mat-card class="card">
+
+    <mat-card-title>
+      Upload Documents
+    </mat-card-title>
+
+    <div>
+      <br>
+    </div>
+
+    <div>
+      <form [formGroup]="newDocumentForm">
+        <table>
+<!--          <tr>-->
+<!--            <td class="label">-->
+<!--              <mat-label for="tin">TIN :</mat-label>-->
+<!--            </td>-->
+
+<!--            <td>-->
+<!--              <mat-form-field class="example-full-width">-->
+<!--                <input type="text" formControlName="tin" required matInput>-->
+<!--              </mat-form-field>-->
+<!--            </td>-->
+<!--          </tr>-->
+
+          <tr>
+            <td class="label">
+              <mat-label for="cname"> Company Name :</mat-label>
+            </td>
+
+            <td>
+              <mat-form-field appearance="fill">
+                <mat-label>Select...</mat-label>
+                <mat-select formControlName="companyName" required>
+                  <mat-option  *ngFor="let company of companies" [value]="company">{{company}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              <mat-label for="fyear"> Financial Year :</mat-label>
+            </td>
+
+            <td>
+              <mat-form-field class="example-full-width">
+                <input type="text" formControlName="financialYear" matInput placeholder="Ex: 2019-2020" required>
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              <mat-label for="rtype"> Report Type :</mat-label>
+            </td>
+
+            <td>
+              <mat-form-field class="example-full-width">
+                <input type="text" formControlName="reportType" matInput placeholder="Ex: Financial Reports" required>
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <br>
+          <!--          <tr>-->
+          <!--            <td  colspan="2">-->
+          <!--              <input type="file" id="sfile" name="sfile" class="file1" required>-->
+          <!--            </td>-->
+          <!--          </tr>-->
+
+          <tr>
+            <td colspan="2">
+              <ngx-dropzone (change)="onSelect($event)" [multiple]="false">
+                <ngx-dropzone-label>Drop Files Here!!</ngx-dropzone-label>
+                <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                  <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                </ngx-dropzone-preview>
+              </ngx-dropzone>
+            </td>
+          </tr>
+
+          <br>
+          <tr>
+            <td class="label2" colspan="2">
+              <section>
+                <mat-checkbox color="primary" formControlName="status">Active</mat-checkbox>
+              </section>
+            </td>
+          </tr>
+          <br>
+          <tr>
+            <td class="label">
+              <button mat-raised-button color="accent" type="reset" value="Reset">
+                <mat-icon>refresh</mat-icon>
+                Reset
+              </button>
+            </td>
+
+            <td class="label2">
+              <button mat-raised-button color="primary" type="submit" value="Submit"
+                      [disabled]="!newDocumentForm.valid"
+                      (click)="saveDocument()">
+                <mat-icon>cloud_upload</mat-icon>
+                Upload
+              </button>
+            </td>
+          </tr>
+        </table>
+      </form>
+<!--      {{newDocumentForm.value | json}}-->
+      <br>
+    </div>
+
+
+<!--    <mat-divider></mat-divider>-->
+
+    <div>
+      <br><br>
+    </div>
+
+    <div>
+<!--      <mat-card-title>Document List-->
+<!--        <mat-icon>list_alt</mat-icon>-->
+<!--      </mat-card-title>-->
+      <br>
+<!--      <div>-->
+<!--        &lt;!&ndash;Document Table&ndash;&gt;-->
+<!--        <table class="table2">-->
+<!--          <tr>-->
+<!--            <th>No.</th>-->
+<!--            <th> Financial Year</th>-->
+<!--            <th>Report Type</th>-->
+<!--            <th>Document</th>-->
+<!--          </tr>-->
+
+<!--          <tr>-->
+<!--            <td>-->
+<!--              &lt;!&ndash;number list&ndash;&gt;1-->
+<!--            </td>-->
+
+<!--            <td>-->
+<!--              &lt;!&ndash;Financial Year&ndash;&gt;2019/2020-->
+<!--            </td>-->
+
+<!--            <td>-->
+<!--              &lt;!&ndash;Report Type&ndash;&gt;Income Statement-->
+<!--            </td>-->
+
+<!--            <td>-->
+<!--              &lt;!&ndash;Document list get by after submitted&ndash;&gt;abc.doc-->
+<!--            </td>-->
+<!--          </tr>-->
+
+<!--          <tr>-->
+<!--            <td>-->
+<!--              &lt;!&ndash;number list&ndash;&gt;2-->
+<!--            </td>-->
+
+<!--            <td>-->
+<!--              &lt;!&ndash;Financial Year&ndash;&gt;2019/2020-->
+<!--            </td>-->
+
+<!--            <td>-->
+<!--              &lt;!&ndash;Report Type&ndash;&gt;Audit Report-->
+<!--            </td>-->
+
+<!--            <td>-->
+<!--              &lt;!&ndash;Document list get by after submitted&ndash;&gt;aaa.pdf-->
+<!--            </td>-->
+<!--          </tr>-->
+<!--        </table>-->
+<!--        &lt;!&ndash;End Document Table&ndash;&gt;-->
+<!--      </div>-->
+    </div>
+<!--    <button mat-raised-button (click)="downloadFileTest(uploadedFileName)">Download File test</button>-->
+  </mat-card>
+
+  <br>
+</div>
+<!--End - Upload documents-->
+

@@ -1,0 +1,223 @@
+<div>
+  <br>
+</div>
+
+<div>
+  <mat-card class="card">
+
+    <mat-card-title> View / Update Client </mat-card-title>
+
+    <div>
+      <br>
+    </div>
+
+    <div>
+      <form [formGroup]="findClientForm">
+
+        <table >
+          <tr>
+            <td class="label">
+              <mat-label for="cname"> Company Name :</mat-label>
+            </td>
+
+            <td>
+              <mat-form-field appearance="fill">
+                <mat-label>Select...</mat-label>
+                <mat-select formControlName="companyName" required>
+                  <mat-option  *ngFor="let company of companies" [value]="company">{{company}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="2">
+              <button mat-raised-button color="primary" type="submit"
+                      *ngIf="getClient"
+                      value="Submit" (click)="loadApiData()"><mat-icon>search</mat-icon> Find</button>
+            </td>
+          </tr>
+          <br>
+          <mat-divider class="mat-divider"> </mat-divider>
+
+          <tr>
+            <td class="label">
+              <mat-label for="tin">TIN :</mat-label>
+            </td>
+
+            <td>
+              <mat-form-field class="example-full-width">
+                <input type="text" formControlName="tin" required matInput>
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              <mat-label for="email"> Email :</mat-label>
+            </td>
+
+            <td>
+              <mat-form-field class="example-full-width">
+                <input type="email" formControlName="email" matInput>
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              <mat-label for="phone"> Phone :</mat-label>
+            </td>
+
+            <td>
+              <mat-form-field class="example-full-width">
+                <input type="text" formControlName="phone" matInput>
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              <mat-label for="addr">Address :</mat-label>
+            </td>
+
+            <td>
+              <mat-form-field class="example-full-width">
+                  <textarea formControlName="address" matInput>
+                  </textarea>
+              </mat-form-field>
+            </td>
+          </tr>
+          <br>
+          <tr>
+            <td class="label2" colspan="2">
+              <section class="example-section">
+                <mat-checkbox class="example-margin" color="primary" formControlName="status">Active</mat-checkbox>
+              </section>
+            </td>
+          </tr>
+          <br>
+          <tr>
+            <td class="label">
+              <button mat-raised-button color="accent" type="reset" value="Reset"><mat-icon>refresh</mat-icon> Reset</button>
+            </td>
+
+            <td>
+              <button mat-raised-button color="primary" type="submit" value="Submit"
+                      *ngIf="updateClient"
+              [disabled]="!findClientForm.valid" (click)="onUpdate()"><mat-icon>save_alt</mat-icon> Update</button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </mat-card>
+</div>
+
+<div>
+  <br>
+</div>
+
+<div>
+  <mat-card class="card">
+
+    <mat-card-title> Add New Client </mat-card-title>
+
+    <div>
+      <br>
+    </div>
+
+    <div>
+      <form [formGroup]="newClientForm" (ngSubmit)="onSubmit()">
+
+        <table >
+          <tr>
+            <td class="label">
+              <mat-label for="tin">TIN :</mat-label>
+            </td>
+
+            <td>
+              <mat-form-field class="example-full-width">
+                <input type="text" formControlName="tin" required matInput placeholder="Ex: 123456789">
+              </mat-form-field>
+            </td>
+
+          </tr>
+
+          <tr>
+            <td class="label">
+              <mat-label for="cname"> Company Name :</mat-label>
+            </td>
+
+            <td>
+              <mat-form-field class="example-full-width">
+                <input type="text" formControlName="companyName" matInput required placeholder="Ex: RTA Sri Lanka">
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              <mat-label for="email"> Email :</mat-label>
+            </td>
+
+            <td>
+              <mat-form-field class="example-full-width">
+                <input type="email" formControlName="email" matInput placeholder="Ex: rtasrilanka@gmail.com">
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              <mat-label for="phone"> Phone :</mat-label>
+            </td>
+
+            <td>
+              <mat-form-field class="example-full-width">
+                <input type="text" formControlName="phone" matInput placeholder="Ex: 123456789">
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              <mat-label for="addr">Address :</mat-label>
+            </td>
+
+            <td>
+              <mat-form-field class="example-full-width">
+                  <textarea formControlName="address" matInput placeholder="Ex: Rodney Street, Colombo 08">
+                  </textarea>
+              </mat-form-field>
+            </td>
+          </tr>
+          <br>
+          <tr>
+            <td class="label2" colspan="2">
+              <section class="example-section">
+                <mat-checkbox class="example-margin" color="primary" formControlName="status">Active</mat-checkbox>
+              </section>
+            </td>
+          </tr>
+          <br>
+          <tr>
+            <td class="label">
+              <button mat-raised-button color="accent" type="reset" value="Reset"><mat-icon>refresh</mat-icon> Reset</button>
+            </td>
+
+            <td>
+              <button mat-raised-button color="primary" type="submit" value="Submit"
+                      *ngIf="addClient"
+                      [disabled]="!newClientForm.valid"><mat-icon>check</mat-icon> Submit</button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </mat-card>
+</div>
+
+<div>
+  <br>
+</div>

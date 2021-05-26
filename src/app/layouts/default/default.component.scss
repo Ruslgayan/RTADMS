@@ -1,0 +1,17 @@
+:host{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.content{
+  background-color:#fff9c4;
+  text-align: center;
+  align-items: center;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.working{
+  background-color: #fff59d;
+}

@@ -1,0 +1,224 @@
+<div>
+  <br>
+</div>
+
+<div>
+  <mat-card class="card">
+
+    <mat-card-title>
+      Find Documents
+    </mat-card-title>
+
+    <div>
+      <br>
+    </div>
+
+    <div>
+      <form [formGroup]="findDocForm">
+
+        <table>
+
+          <tr>
+            <td class="label">
+              <mat-label for="cname"> Company Name :</mat-label>
+            </td>
+
+            <td>
+              <mat-form-field appearance="fill">
+                <mat-label>Select...</mat-label>
+                <mat-select formControlName="companyName" required>
+                  <mat-option  *ngFor="let company of companies" [value]="company">{{company}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+
+<!--          <tr>-->
+<!--            <td class="label">-->
+<!--              <mat-label for="tin">TIN :</mat-label>-->
+<!--            </td>-->
+
+<!--            <td>-->
+<!--              <mat-form-field class="example-full-width">-->
+<!--                <input type="text" formControlName="tin" required matInput>-->
+<!--              </mat-form-field>-->
+<!--            </td>-->
+
+<!--          </tr>-->
+
+          <tr>
+            <td class="label">
+              <mat-label for="fyear"> Financial Year :</mat-label>
+            </td>
+
+            <td>
+              <mat-form-field appearance="fill">
+                <mat-label>Select...</mat-label>
+                <mat-select formControlName="financialYear" required>
+                  <mat-option *ngFor="let year of years" [value]="year">{{year}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              <mat-label for="rtype"> Report Type :</mat-label>
+            </td>
+
+            <td>
+              <mat-form-field appearance="fill">
+                <mat-label>Select...</mat-label>
+                <mat-select formControlName="reportType" required>
+                  <!--need to add values automatically -->
+                  <mat-option *ngFor="let report of reports" [value]="report">{{report}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              <button mat-raised-button color="accent" type="reset" value="Reset" (click)="clearTable()">
+                <mat-icon>refresh</mat-icon>
+                Reset
+              </button>
+            </td>
+
+            <td class="label2">
+              <button mat-raised-button color="primary" type="submit" value="Submit"
+              [disabled]="!findDocForm.valid" (click)="getFile()">
+                <mat-icon>search</mat-icon>
+                Find
+              </button>
+            </td>
+          </tr>
+        </table>
+      </form>
+<!--      {{findDocForm.value | json}}-->
+    </div>
+  </mat-card>
+
+  <br>
+</div>
+
+<div >
+  <mat-card class="card">
+    <mat-card-title>Document List <mat-icon>list_alt</mat-icon></mat-card-title>
+    <br>
+    <div>
+      <!--Document Table-->
+      <!--Example-->
+
+      <table  *ngIf="documents && documents.length" class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th >No.</th>
+            <th> Financial Year </th>
+            <th > Report Type </th>
+            <th> Document </th>
+            <th > Action </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let document of documents; index as i">
+            <td>{{i+1}}</td>
+            <td>{{document.financialYear}}</td>
+            <td>{{document.reportType}}</td>
+            <td>{{document.documentName}}</td>
+            <td>
+              <button mat-raised-button color="primary" type="submit" value="Submit"
+                      (click)="downloadFileTest(document.documentName)">
+                <mat-icon>save_alt</mat-icon>Download
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- End Example-->
+      <!--End Document Table-->
+    </div>
+  </mat-card>
+</div>
+
+
+<div>
+  <br>
+</div>
+
+<div>
+  <mat-card class="card">
+
+    <mat-card-title>
+      Change Password
+    </mat-card-title>
+
+    <div>
+      <br>
+    </div>
+
+    <div>
+      <form [formGroup]="changePasswordForm">
+
+        <table>
+
+          <tr>
+            <td class="label">
+              <mat-label for="password"> Current Password :</mat-label>
+            </td>
+
+            <td>
+              <mat-form-field class="example-full-width">
+                <input type="password" formControlName="oldPassword"  matInput required>
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              <mat-label for=""> New Password :</mat-label>
+            </td>
+
+            <td>
+              <mat-form-field class="example-full-width">
+                <input type="password" formControlName="newPassword"  matInput required>
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              <mat-label for="reNewPassword"> Confirm Password :</mat-label>
+            </td>
+
+            <td>
+              <mat-form-field class="example-full-width">
+                <input type="password" formControlName="password"  matInput required>
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              <button mat-raised-button color="accent" type="reset" value="Reset">
+                <mat-icon>refresh</mat-icon>
+                Reset
+              </button>
+            </td>
+
+            <td class="label2">
+              <button mat-raised-button color="primary" type="submit" value="Submit"
+                      [disabled]="!changePasswordForm.valid" (click)="changePassword()">
+                <mat-icon>people_alt</mat-icon>
+                Update
+              </button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </mat-card>
+</div>
+
+<div><br></div>

@@ -1,0 +1,34 @@
+<div>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row fxLayoutAlign="space-between center">
+
+      <div fxLayoutAlign="space-between center">
+        <mat-icon style="margin-right: 5px;">source</mat-icon>
+        <mat-label>RTA DMS</mat-label>
+      </div>
+
+      <div>
+        <mat-label> Welcome {{userName}}</mat-label>
+      </div>
+
+      <div fxLayoutGap="10px" *ngIf="!deviceXs">
+        <a mat-raised-button color="primary" routerLink="/" ><mat-icon>home</mat-icon> Home</a>
+        <a *ngIf="showUser" mat-raised-button color="primary" routerLink="/user" ><mat-icon>person</mat-icon> User</a>
+        <a *ngIf="showClient" mat-raised-button color="primary" routerLink="/client" ><mat-icon>corporate_fare</mat-icon> Client</a>
+        <a *ngIf="showDocument" mat-raised-button color="primary" routerLink="/document"><mat-icon>folder_shared</mat-icon> Document</a>
+        <button mat-raised-button color="warn" (click)= 'logOut()'><mat-icon>power_settings_new</mat-icon> Log Out</button>
+
+      </div>
+
+    </mat-toolbar-row>
+
+    <mat-toolbar-row fxLayoutGap="10px" *ngIf="deviceXs">
+      <a mat-raised-button color="primary" routerLink="/home" >Home</a>
+      <a mat-raised-button color="primary" routerLink="/home/document" >Document</a>
+      <a mat-raised-button color="primary" routerLink="/home/user" >User</a>
+      <a mat-raised-button color="primary" routerLink="/home/client" >Client</a><button mat-raised-button color="warn" (click)= 'logOut()'><mat-icon>power_settings_new</mat-icon></button>
+    </mat-toolbar-row>
+
+  </mat-toolbar>
+</div>
+
